@@ -2,37 +2,35 @@
 {
     internal class Program
     {
-        static double[] Inverse_diagonal_average(int[,] matrix) 
-        {
-            double[]result=new double[matrix.GetLength(0)];
+        static int[] Maximum(int[] numbers) {
+            int[] result= new int[2];
 
-
-
-
-
-
-            return result;
-        
-        
-        
-        
-        
-        }
-        static int[] Vector_sum(int[,] table)
-        {
-            int s = 0,sum=0;
-            int[] result = new int[table.GetLength(0)]; 
-                for(int i = 0; i < table.GetLength(0); i++)
+            for (int i = 0; i < numbers.Length; i++) 
+            { 
+                if(numbers[i] == result[0])
                 {
-                    for (int t = 0; t < table.GetLength(1); t++)
+                    result[0] = numbers[i];
+                    result[1] = i;
+                }           
+            }
+        return result;
+        }
+        static bool Finder(int x,int[,] matrix)
+        {
+
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                for (int t = 0; t < matrix.GetLength(1); t++)
+                {
+                    if(matrix[i,t] == x)
                     {
-                        sum += table[i,t];
+                        return true;
                     }
-                    result[s] = sum;
-                    s++;
-                    sum = 0;
-                }       
-            return result;
+                }
+
+            }
+            return false;
+
         }
         static string[] Inversion(string[] original)
         {
@@ -42,6 +40,44 @@
             {
                 result[t] = original[i];
                 t++;    
+            }
+            return result;
+        }
+        static int[] Vector_sum(int[,] table)
+        {
+            int s = 0, sum = 0;
+            int[] result = new int[table.GetLength(0)];
+            for (int i = 0; i < table.GetLength(0); i++)
+            {
+                for (int t = 0; t < table.GetLength(1); t++)
+                {
+                    sum += table[i, t];
+                }
+                result[s] = sum;
+                s++;
+                sum = 0;
+            }
+            return result;
+        }
+        static double[] Inverse_diagonal_average(int[,] matrix)
+        {
+            double[] result = new double[matrix.GetLength(0)];
+            double average = 0;
+            int s = 0;
+
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                for (int t = 0; t < matrix.GetLength(1); t++)
+                {
+                    average += matrix[i, t];
+                }
+
+            }
+            average /= matrix.GetLength(0);
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                result[s] += average * matrix[i, i];
+                s++;
             }
             return result;
         }
