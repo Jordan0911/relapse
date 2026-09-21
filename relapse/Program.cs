@@ -67,16 +67,13 @@
 
             for (int i = 0; i < matrix.GetLength(0); i++)
             {
-                for (int t = 0; t < matrix.GetLength(1); t++)
-                {
-                    average += matrix[i, t];
-                }
+                average += matrix[i, i];
 
             }
             average /= matrix.GetLength(0);
-            for (int i = 0; i < matrix.GetLength(0); i++)
+            for (int i = matrix.GetLength(0)-1; i>=0; i--)
             {
-                result[s] += average * matrix[i, i];
+                result[s] += average * matrix[s, i];
                 s++;
             }
             return result;
